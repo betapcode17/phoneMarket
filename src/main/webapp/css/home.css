@@ -71,7 +71,7 @@ body {
 .catalog-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 13px;
     flex-shrink: 0;
 }
 .logo-text {
