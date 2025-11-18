@@ -42,7 +42,7 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge">3</span>
             </a>
-            <a href="#" class="login-btn">Đăng nhập</a>
+            <a href="/jsp/auth/login.jsp" class="login-btn">Đăng nhập</a>
         </div>
     </div>
 </header>
