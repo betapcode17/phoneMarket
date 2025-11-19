@@ -5,16 +5,17 @@ public class Products {
     private String name;
     private int price;
     private String description;
-    private String image_url;
+    private String image;
     private int stock_quantity;
 
-    public Products(int id, String name, int price, String description, String image_url, int stock_quantity) {
+    public Products(int id, String name, int price, String description, String image, int stock_quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
-        this.image_url = image_url;
+        this.image = image;
         this.stock_quantity = stock_quantity;
+
     }
 
 
@@ -51,12 +52,12 @@ public class Products {
         this.description = description;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImage() {
+        return image;
     }
 
-    public void setImage(String image_url) {
-        this.image_url = this.image_url;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getStock_quantity() {
@@ -66,5 +67,6 @@ public class Products {
     public void setStock_quantity(int stock_quantity) {
         this.stock_quantity = stock_quantity;
     }
+
 
 }

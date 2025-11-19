@@ -36,4 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-.smarttomcat
+.smarttomcat/
+src/main/java/com/phonemarket/connection/ConnectJDBC.java

@@ -7,36 +7,24 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProductsBo {
-    private ProductsDao productsDao;
+    private final ProductsDao productsDao;
 
     public ProductsBo() {
         this.productsDao = new ProductsDao();
     }
 
     // Lấy tất cả sản phẩm
-    public List<Products> getAllProducts() {
-        try {
-//            List<Products> temp = productsDao.findAll();
-//            for(int i = 0; i < temp.size(); i++) {
-//                System.out.println(temp.get(i).getName());
-//            }
-            return productsDao.findAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public List<Products> getAllProducts() throws SQLException {
+        return productsDao.getAllProducts();
     }
 
     // Lấy sản phẩm theo ID
-    public Products getProductById(int id) {
-        try {
-            return productsDao.findById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public Products getProductById(int id) throws SQLException {
+        return productsDao.getProductById(id);
     }
 
     // Thêm sản phẩm mới
-    public boolean addProduct(Products product) {
+    public boolean addProduct(Products product) throws SQLException {
         // Kiểm tra validation trước khi thêm
         if (product == null || product.getName() == null || product.getName().trim().isEmpty()) {
             return false;
@@ -44,35 +32,23 @@ public class ProductsBo {
         if (product.getPrice() <= 0) {
             return false;
         }
-        try {
-            return productsDao.insert(product);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return productsDao.addProduct(product);
     }
 
     // Cập nhật sản phẩm
-    public boolean updateProduct(Products product) {
+    public boolean updateProduct(Products product) throws SQLException {
         if (product == null || product.getId() <= 0) {
             return false;
         }
-        try {
-            return productsDao.update(product);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return productsDao.update(product);
     }
 
     // Xóa sản phẩm
-    public boolean deleteProduct(int id) {
+    public boolean deleteProduct(int id) throws SQLException {
         if (id <= 0) {
             return false;
         }
-        try {
-            return productsDao.delete(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return productsDao.delete(id);
     }
 
     // Tìm kiếm sản phẩm theo tên
@@ -80,10 +56,6 @@ public class ProductsBo {
         if (keyword == null || keyword.trim().isEmpty()) {
             return getAllProducts();
         }
-        try {
-            return productsDao.findByName(keyword);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return productsDao.searchProductsByName(keyword);
     }
 }
