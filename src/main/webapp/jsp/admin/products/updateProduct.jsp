@@ -27,32 +27,40 @@
   </aside>
   <main class="main-content">
     <header class="header">
-      <h1>Add New Product</h1>
-      <p>Fill in the product details to insert into the catalog.</p>
+      <h1>Update Product</h1>
+      <p>Change in the product details to update into the catalog.</p>
     </header>
+
+    <c:set var="product" value="${product}" />
+
     <section class="form-section">
         <%-- functype="multipart/form-data" cho phép gửi dữ liệu file  --%>
-      <form action="${pageContext.request.contextPath}/admin/products/add" method="post" class="product-form" enctype="multipart/form-data">
+      <form action="${pageContext.request.contextPath}/admin/products/update" method="post" class="product-form" enctype="multipart/form-data">
         <div class="form-grid">
+            <input type="hidden" name="id" value="${product.id}">
           <div class="form-group">
             <label for="name">Product Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" value="${product.name}" required>
           </div>
 
           <div class="form-group">
             <label for="price">Price (USD)</label>
-            <input type="number" step="0.01" id="price" name="price" required>
+            <input type="number" step="0.01" id="price" name="price" value="${product.price}" required>
           </div>
 
           <div class="form-group">
             <label for="stock">Stock Quantity</label>
-            <input type="number" id="stock" name="stock_quantity" min="0" value="0" required>
+            <input type="number" id="stock" name="stock_quantity" min="0" value="${product.stock_quantity}" required>
           </div>
 
           <div class="form-group full-width">
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="3"></textarea>
+            <textarea id="description" name="description" rows="3" >${product.description}</textarea>
           </div>
+
+          <div class="form-group">
+              <img class="product-image-thumb" src="${pageContext.request.contextPath}${product.image}" alt="${product.name}" />
+           </div>
 
           <div class="form-group">
             <label for="imageURL">Image file</label>
@@ -62,7 +70,7 @@
 
         <div class="form-actions">
           <button type="reset" class="btn-outline">Reset</button>
-          <button type="submit" class="btn-primary">Create Product</button>
+          <button type="submit" class="btn-primary">Update Product</button>
         </div>
       </form>
     </section>

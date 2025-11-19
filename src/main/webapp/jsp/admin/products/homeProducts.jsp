@@ -119,7 +119,7 @@
               <tr>
                 <td>${p.id}</td>
                 <td>${p.name}</td>
-                <td>$${p.price}</td>
+                <td>${p.price}</td>
                 <td>${p.stock_quantity}</td>
                 <td>
                     <img src="${pageContext.request.contextPath}${p.image}" alt="${p.name}" />
