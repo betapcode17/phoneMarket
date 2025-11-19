@@ -36,6 +36,20 @@ public class ProductsController extends HttpServlet {
         }
         else if ("/add".equals(action)) {
             req.getRequestDispatcher("/jsp/admin/products/addProducts.jsp").forward(req, resp);
+        } else if ("/edit".equals(action)) {
+            int productId = Integer.parseInt(req.getParameter("id"));
+            ProductsBo productsBo = new ProductsBo();
+            try {
+                Products product = productsBo.getProductById(productId);
+                if (product != null) {
+                    req.setAttribute("product", product);
+                    req.getRequestDispatcher("/jsp/admin/products/updateProduct.jsp").forward(req, resp);
+                } else {
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
@@ -78,7 +92,8 @@ public class ProductsController extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/admin/products/");
             }
 
-        } else {
+        }
+        else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
