@@ -1,20 +1,43 @@
-/* sidebar.css: Styles dành riêng cho Sidebar */
+/* =========================
+   RESET CƠ BẢN
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-/* Sidebar */
+html, body {
+    height: 100%;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f8fafc;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar {
     width: 250px;
     background: #1e293b;
-    color: white;
-    transition: width 0.3s;
+    color: #fff;
     position: fixed;
+    top: 0;
+    left: 0;
     height: 100vh;
     overflow-y: auto;
+    transition: width 0.3s ease;
+    z-index: 20;
 }
 
-.sidebar.collapsed {
-    width: 60px;
-}
-
+/* Sidebar header */
 .sidebar-header {
     padding: 20px;
     border-bottom: 1px solid #334155;
@@ -27,31 +50,89 @@
     gap: 10px;
 }
 
+/* Sidebar menu */
 .sidebar-nav ul {
     list-style: none;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 .sidebar-nav li {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .sidebar-nav a {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
     padding: 12px 20px;
     color: #cbd5e1;
     text-decoration: none;
-    transition: background 0.3s;
+    transition: background 0.25s, color 0.25s;
 }
 
-.sidebar-nav a:hover, .sidebar-nav a.active {
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
     background: #3b82f6;
-    color: white;
+    color: #fff;
 }
 
 .sidebar-nav i {
     width: 20px;
     text-align: center;
+    font-size: 1rem;
+}
+
+/* =========================
+   SIDEBAR COLLAPSE
+========================= */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+/* Ẩn text khi collapse */
+.sidebar.collapsed .sidebar-header h2 span,
+.sidebar.collapsed .sidebar-nav span {
+    display: none;
+}
+
+/* Canh icon giữa */
+.sidebar.collapsed .sidebar-nav a {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    padding: 24px;
+    background: #f8fafc;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Khi sidebar collapse */
+.sidebar.collapsed ~ .main-content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+/* =========================
+   RESPONSIVE (OPTIONAL)
+========================= */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
 }
